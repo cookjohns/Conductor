@@ -1,0 +1,733 @@
+
+
+
+  
+  
+ 
+  
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hello World &mdash; Leap Motion C# and Unity SDK v2.0 Beta documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/breathe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0 Beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/css/font-awesome.min.css"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Leap Motion C# and Unity SDK v2.0 Beta documentation" href="../index.html" />
+    <link rel="up" title="Application Development" href="Leap_Guides.html" />
+    <link rel="next" title="Setting Up a Project" href="Project_Setup.html" />
+    <link rel="prev" title="SDK Libraries" href="Leap_SDK_Overview.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31536531-1']);
+  _gaq.push(['_setDomainName', 'leapmotion.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+<script type="text/javascript" src="../_static/leap.min.js"></script>
+<script type="text/javascript" src="../_static/three.min.js"></script>
+<script type="text/javascript" src="../_static/LeapExample.js"></script>
+<script type="text/javascript" src="../_static/kinetic.min.js"></script>
+<script type="text/javascript" src="../_static/dat.gui.min.js"></script>
+
+ 
+
+<script>
+
+    function getQueryValue(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+
+    var requestedAPI = getQueryValue("proglang");
+    if(requestedAPI == "current") requestedAPI = localStorage["currentAPI"];
+    var pageAPI = 'csharp';
+    var hasAPI = {};
+    hasAPI.cpp = true;
+    hasAPI.csharp = true;
+    hasAPI.objc = true;
+    hasAPI.java = true;
+    hasAPI.python = true;
+
+    if(requestedAPI && (requestedAPI != pageAPI))
+    {
+        if(pageAPI != 'none'){
+            var redirectedLocation = '../../csharp/devguide/Sample_Tutorial.html';
+            if( requestedAPI == 'cpp' && hasAPI.cpp){
+                redirectedLocation = "../../cpp/devguide/Sample_Tutorial.html";
+            }
+            else if( requestedAPI == 'csharp' && hasAPI.csharp){
+                redirectedLocation = "../../csharp/devguide/Sample_Tutorial.html";
+            }
+            else if( requestedAPI == 'objc' && hasAPI.objc){
+                redirectedLocation = "../../objc/devguide/Sample_Tutorial.html";
+            }
+            else if( requestedAPI == 'java' && hasAPI.java) {
+                redirectedLocation = "../../java/devguide/Sample_Tutorial.html";
+            }
+            else if( requestedAPI == 'javascript' && hasAPI.javascript){
+                redirectedLocation = "../../javascript/devguide/Sample_Tutorial.html";
+            }
+            else if( requestedAPI == 'python' && hasAPI.python) {
+                redirectedLocation = "../../python/devguide/Sample_Tutorial.html";
+            } else {
+                    redirectedLocation ="Leap_Guides.html";
+            }
+
+            //Guard against redirecting to the same page (infinitely)
+            if('../../csharp/devguide/Sample_Tutorial.html' != redirectedLocation) window.location.replace(redirectedLocation);
+        }
+    }
+
+</script>
+
+<script>
+window.addEventListener('keyup', handleKeyInput);
+function handleKeyInput(e)
+{
+    var code;
+    if (!e) var e = window.event;
+    if (e.keyCode) code = e.keyCode;
+    else if (e.which) code = e.which;
+    var character = String.fromCharCode(code);
+    if( character == "J" & e.altKey){
+            window.location.assign("Leap_SDK_Overview.html");    }
+    else if( character == "K" & e.altKey){
+            window.location.assign("Project_Setup.html");
+    }
+
+}
+</script>
+<script type="text/javascript" src="../_static/leap.min.js"></script>
+<script type="text/javascript" src="../_static/three.min.js"></script>
+<script type="text/javascript" src="../_static/LeapExample.js"></script>
+
+<script type="text/javascript" src="/assets/standalone-header.js?r9"></script>
+<link rel="stylesheet" href="/assets/standalone-header.css?r9" type="text/css" />
+
+
+  </head>
+  <body>
+
+<div class="developer-portal-styles">
+  <header class="navbar navbar-static-top developer-navbar header beta-header">
+    <nav class="container pr">
+      <a class="logo-link pull-left" href="/">
+        <img alt="Leap Motion Developers" class="media-object pull-left white-background" src="../_static/logo.png" />
+      </a>
+      <span class="inline-block hidden-phone developer-logo-text">
+        <div class="text">
+          <a href="/">
+            <span class="more-than-1199">Developer Portal</span>
+
+          </a>
+        </div>
+      </span>
+
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- Everything within here will be hidden at 940px or less, accessible via a button. -->
+      <div class="nav-collapse">
+        <ul class="nav header-navigation developer-links">
+          <li class="external-link"><a href="https://developer.leapmotion.com/features">What's new</a> </li>
+          <li class="external-link"><a href="https://developer.leapmotion.com/downloads/skeletal-beta" class="">Getting Started</a></li>
+          <li><a class="active" href="#" class="">Documentation</a></li>
+          <li class="external-link"> <a href="https://developer.leapmotion.com/gallery" class="">Examples</a> </li>
+          <li class="external-link"> <a href="https://www.leapmotion.com/blog/category/labs/" class="" target="_blank">Blog <i class='fa fa-external-link'></i></a> </li>
+          <li class="external-link"> <a href="https://community.leapmotion.com/category/beta" class="" target="_blank">Community <i class='fa fa-external-link'></i></a> </li>
+        </ul>
+      </div>
+
+    </nav>
+  </header>
+</div>
+<section class="main-wrap">
+  <div data-swiftype-index="true">
+    <div class="second_navigation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            
+              
+
+<ul>
+  <li>
+      <a href="Leap_Guides.html?proglang=current" onclick="localStorage['currentAPI'] = 'javascript'">JavaScript</a>
+    
+  </li>
+  <li>
+      C# and Unity
+    
+  </li>
+  <li>
+      <a href="../../cpp/devguide/Sample_Tutorial.html" onclick="localStorage['currentAPI'] = 'cpp'">C++</a>
+    
+  </li>
+  <li>
+      <a href="../../java/devguide/Sample_Tutorial.html" onclick="localStorage['currentAPI'] = 'java'">Java</a>
+    
+  </li>
+  <li>
+      <a href="../../python/devguide/Sample_Tutorial.html" onclick="localStorage['currentAPI'] = 'python'">Python</a>
+    
+  </li>
+  <li>
+      <a href="../../objc/devguide/Sample_Tutorial.html" onclick="localStorage['currentAPI'] = 'objc'">Objective-C</a>
+    
+  </li>
+</ul>
+            
+          </div>
+          <div class="col-md-4 search">
+            
+              <script>
+function storeThisPage(){
+    sessionStorage["pageBeforeSearch"] = window.location;
+    return true;
+}
+function doneWithSearch(){
+    var storedPage = sessionStorage["pageBeforeSearch"];
+    if(storedPage){
+        window.location = storedPage;
+    } else {
+        window.location = "index.html"; //fallback
+    }
+    return false;
+}
+</script>
+<div  style="margin-top:-4px">
+<ul style="display:inline; white-space:nowrap"><li>
+<form class="navbar-form" action="../search.html" method="get" onsubmit="storeThisPage()">
+ <div class="form-group">
+  <input type="search" results="5" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form></li>
+</ul>
+</div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        //Remove dev portal header and footer when viewing from file system
+       if(window.location.protocol == 'file:'){
+            var navNode = document.querySelector(".developer-links");
+            navNode.parentNode.removeChild(navNode);
+        }
+
+    </script>
+
+
+<div id="wrap" data-spy="scroll" data-target="#sidebar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 pull-right">
+        <!-- 
+ 
+<span id="breadcrumbs">
+  <a href="../index.html">Home</a>&raquo;
+    <a href="Leap_Guides.html" accesskey="U">Application Development</a>&raquo;
+  Hello World
+</span> -->
+        
+  <div class="section" id="id1">
+<h1>Hello World<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>This article discusses the C# sample application included with the Leap SDK. After reading this article, you should be ready to access Leap hand tracking data from your own C# applications.</p>
+<p>In the Leap SDK folder, you can find the following files used for this article:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">LeapSDK/samples/Sample.cs</span></tt> — C# sample application</li>
+<li>Windows:<ul>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/LeapCSharp.NET3.5.dll</span></tt> — Leap C# library for .NET 3.5</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/LeapCSharp.NET4.0.dll</span></tt> — Leap C# library for .NET 4.0</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/x86/LeapCSharp.dll</span></tt> — 32-bit Leap C# library for Windows</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/x64/LeapCSharp.dll</span></tt> — 64-bit Leap C# library for Windows</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/x86/Leap.dll</span></tt> — 32-bit Leap library for Windows</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/x64/Leap.dll</span></tt> — 64-bit Leap library for Windows</li>
+</ul>
+</li>
+<li>Mac (Mono):<ul>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/LeapCSharp.NET3.5.dll</span></tt> — Leap C# library for .NET 3.5</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/LeapCSharp.NET4.0.dll</span></tt> — Leap C# library for .NET 4.0</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/libLeapCSharp.dylib</span></tt> — Leap C# library for Mac</li>
+<li><tt class="docutils literal"><span class="pre">LeapSDK/lib/libLeap.dylib</span></tt> — Leap library for Mac</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id2">
+<h2>Overview<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>In a nutshell, the Leap Motion tracking device detects and tracks hands and fingers placed within its field of view. The Leap captures this data one <em>frame</em> at a time. Your applications can use the Leap API to access this data.</p>
+<p>The sample application demonstrates how to use the Leap API to listen for frame events dispatched by the Leap and how to access the hand and finger data in each frame. The application is a small command-line program that prints information about detected hands and fingers to standard output. The application is contained in a single file, <tt class="docutils literal"><span class="pre">Sample.cs</span></tt>.</p>
+<p>The sample application uses most of the key classes in the Leap API, including:</p>
+<ul class="simple">
+<li><a class="reference external" href="../api/Leap.Controller.html"><tt class="docutils literal"><span class="pre">Controller</span></tt></a> — the interface between the Leap and your application</li>
+<li><a class="reference external" href="../api/Leap.Listener.html"><tt class="docutils literal"><span class="pre">Listener</span></tt></a> — used to handle events dispatched by the Leap</li>
+<li><a class="reference external" href="../api/Leap.Frame.html"><tt class="docutils literal"><span class="pre">Frame</span></tt></a> — contains a set of hand and finger tracking data</li>
+<li><a class="reference external" href="../api/Leap.Hand.html"><tt class="docutils literal"><span class="pre">Hand</span></tt></a> — contains tracking data for a detected hand</li>
+<li><a class="reference external" href="../api/Leap.Finger.html"><tt class="docutils literal"><span class="pre">Finger</span></tt></a> — contains tracking data for a detected finger</li>
+<li><a class="reference external" href="../api/Leap.Vector.html"><tt class="docutils literal"><span class="pre">Vector</span></tt></a> — represents a 3D position or directional vector</li>
+<li><a class="reference external" href="../api/Leap.Gesture.html"><tt class="docutils literal"><span class="pre">Gesture</span></tt></a> — represents a recognized gesture.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>Creating a Controller object<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../api/Leap.Controller.html"><tt class="docutils literal"><span class="pre">Controller</span></tt></a> class provides the main interface between the Leap and your application. When you create a <tt class="docutils literal"><span class="pre">Controller</span></tt> object, it connects to the Leap Motion software running on the computer and makes hand tracking data available through <a class="reference external" href="../api/Leap.Frame.html"><tt class="docutils literal"><span class="pre">Frame</span></tt></a> objects. You can access these <tt class="docutils literal"><span class="pre">Frame</span></tt> objects by instantiating a <tt class="docutils literal"><span class="pre">Controller</span></tt> object and calling the <tt class="docutils literal"><span class="pre">Controller.Frame</span></tt> method.</p>
+<p>If your application has a natural update loop or frame rate, then you can call <tt class="docutils literal"><span class="pre">Controller.Frame</span></tt> as part of this update. Otherwise, you can add a listener to the controller object. The controller object invokes the callback methods defined in your <a class="reference external" href="../api/Leap.Listener.html"><tt class="docutils literal"><span class="pre">Listener</span></tt></a> subclass whenever a new frame of tracking data is available (and also for a few other Leap events).</p>
+<p>The sample application creates a <tt class="docutils literal"><span class="pre">Controller</span></tt> object in the Sample class&#8217;s <tt class="docutils literal"><span class="pre">Main</span></tt> method and adds an instance of a <tt class="docutils literal"><span class="pre">Listener</span></tt> subclass to the <tt class="docutils literal"><span class="pre">Controller</span></tt> with the <tt class="docutils literal"><span class="pre">Controller.AddListener</span></tt> method:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>class Sample
+{
+    public static void Main()
+    {
+        // Create a sample listener and controller
+        SampleListener listener = new SampleListener();
+        Controller controller = new Controller();
+
+        // Have the sample listener receive events from the controller
+        controller.AddListener(listener);
+
+        // Keep this process running until Enter is pressed
+        Console.WriteLine(&quot;Press Enter to quit...&quot;);
+        Console.ReadLine();
+
+        // Remove the sample listener when done
+        controller.RemoveListener(listener);
+        controller.Dispose();
+    }
+}
+</pre></div>
+</div>
+<p>The application then runs until you press the <tt class="docutils literal"><span class="pre">Enter</span></tt> key. In the meantime, the controller calls the appropriate listener callback methods when events occur. Before running the program, though, you must create your own subclass of the <tt class="docutils literal"><span class="pre">Listener</span></tt> class.</p>
+</div>
+<div class="section" id="id4">
+<h2>Subclassing the Listener class<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>The sample application defines a <tt class="docutils literal"><span class="pre">Listener</span></tt> subclass, SampleListener, which implements callback methods to handle events dispatched by the Leap Motion controller. The events include:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">OnInit</span></tt> — dispatched once, when the controller to which the listener is registered is initialized.</li>
+<li><tt class="docutils literal"><span class="pre">OnConnect</span></tt> — dispatched when the controller connects to the Leap Motion controller and is ready to begin sending frames of motion tracking data.</li>
+<li><tt class="docutils literal"><span class="pre">OnDisconnect</span></tt> — dispatched if the controller disconnects from the Leap Motion controller (for example, if you unplug the device or shut down the Leap Motion software).</li>
+<li><tt class="docutils literal"><span class="pre">OnExit</span></tt> — dispatched to a listener when it is removed from a controller.</li>
+<li><tt class="docutils literal"><span class="pre">OnFrame</span></tt> — dispatched when a new frame of motion tracking data is available.</li>
+</ul>
+<p>For three lifecycle event callbacks, <tt class="docutils literal"><span class="pre">OnInit</span></tt>, <tt class="docutils literal"><span class="pre">OnDisconnect</span></tt>, and <tt class="docutils literal"><span class="pre">OnExit</span></tt> the sample application simply prints a message to standard output. For the <tt class="docutils literal"><span class="pre">OnConnect</span></tt>  and <tt class="docutils literal"><span class="pre">OnFrame</span></tt> event, the listener callback does a bit more work. When the controller calls the <tt class="docutils literal"><span class="pre">OnConnect</span></tt> callback, the function enables recognition for all the gesture types. When the controller calls <tt class="docutils literal"><span class="pre">OnFrame</span></tt>, the function gets the latest frame of motion tracking data and prints information about the detected objects to standard output.</p>
+</div>
+<div class="section" id="id5">
+<h2>Getting a Frame of data<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../api/Leap.Controller.html"><tt class="docutils literal"><span class="pre">Controller</span></tt></a> calls the <tt class="docutils literal"><span class="pre">OnFrame</span></tt> callback method when the Leap generates a new frame of motion tracking data.  You can access the new data by calling the <tt class="docutils literal"><span class="pre">Controller.Frame()</span></tt> method, which returns the newest <a class="reference external" href="../api/Leap.Frame.html"><tt class="docutils literal"><span class="pre">Frame</span></tt></a> object. (A reference to the <tt class="docutils literal"><span class="pre">Controller</span></tt> object is passed to the callback as a parameter.) A <tt class="docutils literal"><span class="pre">Frame</span></tt> object contains an ID, a timestamp, and a list containing a <a class="reference external" href="../api/Leap.Hand.html"><tt class="docutils literal"><span class="pre">Hand</span></tt></a> object for each physical hand in view.</p>
+<p>The following code from the sample application&#8217;s <tt class="docutils literal"><span class="pre">OnFrame</span></tt> implementation gets the most recent <tt class="docutils literal"><span class="pre">Frame</span></tt> object from the controller, retrieves the list of hands from the frame and then prints out the frame ID, timestamp, and the number of hands in the list:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>// Get the most recent frame and report some basic information
+Frame frame = controller.Frame();
+SafeWriteLine(&quot;Frame id: &quot; + frame.Id
+            + &quot;, timestamp: &quot; + frame.Timestamp
+            + &quot;, hands: &quot; + frame.Hands.Count
+            + &quot;, fingers: &quot; + frame.Fingers.Count
+            + &quot;, tools: &quot; + frame.Tools.Count);
+</pre></div>
+</div>
+<p>The method goes on to examine the first hand in the list:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>if (!frame.Hands.IsEmpty)
+{
+    // Get the first hand
+    Hand hand = frame.Hands[0];
+</pre></div>
+</div>
+<p>A <tt class="docutils literal"><span class="pre">Hand</span></tt> object contains an ID, properties representing the hand&#8217;s physical characteristics, and a list of <a class="reference external" href="../api/Leap.Finger.html"><tt class="docutils literal"><span class="pre">Finger</span></tt></a> objects. Each <tt class="docutils literal"><span class="pre">Finger</span></tt> object contains an ID and properties representing the characteristic of the finger.</p>
+<p>Once it has retrieved a hand, the method checks it for fingers and then averages the finger tip positions, printing the result and the number of fingers:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>// Check if the hand has any fingers
+FingerList fingers = hand.Fingers;
+if (!fingers.IsEmpty)
+{
+    // Calculate the hand&#39;s average finger tip position
+    Vector avgPos = Vector.Zero;
+    foreach (Finger finger in fingers)
+    {
+        avgPos += finger.TipPosition;
+    }
+    avgPos /= fingers.Count;
+    SafeWriteLine(&quot;Hand has &quot; + fingers.Count
+                + &quot; fingers, average finger tip position: &quot; + avgPos);
+}
+</pre></div>
+</div>
+<p>Next, the method prints the radius of a sphere fit to the hand&#8217;s curvature, along with the hand&#8217;s palm position:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>// Get the hand&#39;s sphere radius and palm position
+SafeWriteLine(&quot;Hand sphere radius: &quot; + hand.SphereRadius.ToString(&quot;n2&quot;)
+            + &quot; mm, palm position: &quot; + hand.PalmPosition);
+</pre></div>
+</div>
+<p>Finally, the <tt class="docutils literal"><span class="pre">OnFrame</span></tt> method uses <a class="reference external" href="../api/Leap.Vector.html"><tt class="docutils literal"><span class="pre">Vector</span></tt></a> methods to calculate the hand&#8217;s pitch, roll, and yaw angles from the hand&#8217;s normal vector and the direction vector. The angles are converted from radians to degrees:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>// Get the hand&#39;s normal vector and direction
+Vector normal = hand.PalmNormal;
+Vector direction = hand.Direction;
+
+// Calculate the hand&#39;s pitch, roll, and yaw angles
+SafeWriteLine(&quot;Hand pitch: &quot; + direction.Pitch * 180.0f / (float)Math.PI  + &quot; degrees, &quot;
+            + &quot;roll: &quot; + normal.Roll * 180.0f / (float)Math.PI + &quot; degrees, &quot;
+            + &quot;yaw: &quot; + direction.Yaw * 180.0f / (float)Math.PI + &quot; degrees\n&quot;);
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>Getting Gestures<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>To receive gestures from the Leap, you first have to enable recognition for each type of gesture you are interested in. You can enable gesture recognition any time after the controller connects to the Leap (<tt class="docutils literal"><span class="pre">IsConnected</span></tt> is true). In the sample program, all gestures are enabled in the <tt class="docutils literal"><span class="pre">OnConnect()</span></tt> callback function using the <tt class="docutils literal"><span class="pre">EnableGesture()</span></tt> methods defined in the <a class="reference external" href="../api/Leap.Controller.html"><tt class="docutils literal"><span class="pre">Controller</span></tt></a> class:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>public override void OnConnect (Controller controller)
+{
+    SafeWriteLine (&quot;Connected&quot;);
+    controller.EnableGesture (Gesture.GestureType.TYPE_CIRCLE);
+    controller.EnableGesture (Gesture.GestureType.TYPE_KEY_TAP);
+    controller.EnableGesture (Gesture.GestureType.TYPE_SCREEN_TAP);
+    controller.EnableGesture (Gesture.GestureType.TYPE_SWIPE);
+}
+</pre></div>
+</div>
+<p>The Leap adds <a class="reference external" href="../api/Leap.Gesture.html"><tt class="docutils literal"><span class="pre">Gesture</span></tt></a> objects representing each recognized movement pattern to the gestures list in the <a class="reference external" href="../api/Leap.Frame.html"><tt class="docutils literal"><span class="pre">Frame</span></tt></a> object. In the <tt class="docutils literal"><span class="pre">OnFrame()</span></tt> callback, the sample application loops through the gesture list and prints information about each one to the standard output. This operation is performed with a standard for-loop and switch statement.</p>
+<p>The gesture API uses a base <tt class="docutils literal"><span class="pre">Gesture</span></tt> class which is extended by classes representing the individual gestures. The objects in the gesture list are <tt class="docutils literal"><span class="pre">Gesture</span></tt> instances, so you must convert the <tt class="docutils literal"><span class="pre">Gesture</span></tt> instance to an instance of the correct subclass. Casting is not supported, instead each subclass provides a constructor that performs the conversion. For example, a <tt class="docutils literal"><span class="pre">Gesture</span></tt> instance representing a circle gesture can by converted into a <a class="reference external" href="../api/Leap.CircleGesture.html"><tt class="docutils literal"><span class="pre">CircleGesture</span></tt></a> instance with the following code:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>CircleGesture circle = new CircleGesture (gesture)
+</pre></div>
+</div>
+<p>If you try to convert a <tt class="docutils literal"><span class="pre">Gesture</span></tt> instance into the wrong subclass, the constructor functions return invalid <tt class="docutils literal"><span class="pre">Gesture</span></tt> objects.</p>
+<p>It is sometimes useful to compare the properties of a gesture in the current frame to those from an earlier frame. For example, the circle gesture has a <tt class="docutils literal"><span class="pre">progress</span></tt> attribute that describes how many times the finger has traversed the circle. This is the total progress, however; if you want the progress between frames, you must subtract the progress value of the gesture in the previous frame. You can do this by looking up the gesture in the previous frame using the gesture ID. The following code calculates the progress since the previous frame to derive the angle in degrees:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>// Calculate angle swept since last frame
+float sweptAngle = 0;
+if (circle.State != Gesture.GestureState.STATESTART) {
+    CircleGesture previousUpdate = new CircleGesture (controller.Frame (1).Gesture (circle.Id));
+    sweptAngle = (circle.Progress - previousUpdate.Progress) * 360;
+}
+</pre></div>
+</div>
+<p>The full code for the gesture loop is:</p>
+<div class="code csharp highlight-python"><div class="highlight"><pre>// Get gestures
+GestureList gestures = frame.Gestures ();
+for (int i = 0; i &lt; gestures.Count; i++) {
+    Gesture gesture = gestures [i];
+
+    switch (gesture.Type) {
+    case Gesture.GestureType.TYPE_CIRCLE:
+        CircleGesture circle = new CircleGesture (gesture);
+
+            // Calculate clock direction using the angle between circle normal and pointable
+        String clockwiseness;
+        if (circle.Pointable.Direction.AngleTo (circle.Normal) &lt;= Math.PI / 4) {
+            //Clockwise if angle is less than 90 degrees
+            clockwiseness = &quot;clockwise&quot;;
+        } else {
+            clockwiseness = &quot;counterclockwise&quot;;
+        }
+
+        float sweptAngle = 0;
+
+            // Calculate angle swept since last frame
+        if (circle.State != Gesture.GestureState.STATESTART) {
+            CircleGesture previousUpdate = new CircleGesture (controller.Frame (1).Gesture (circle.Id));
+            sweptAngle = (circle.Progress - previousUpdate.Progress) * 360;
+        }
+
+        SafeWriteLine (&quot;Circle id: &quot; + circle.Id
+                       + &quot;, &quot; + circle.State
+                       + &quot;, progress: &quot; + circle.Progress
+                       + &quot;, radius: &quot; + circle.Radius
+                       + &quot;, angle: &quot; + sweptAngle
+                       + &quot;, &quot; + clockwiseness);
+        break;
+    case Gesture.GestureType.TYPE_SWIPE:
+        SwipeGesture swipe = new SwipeGesture (gesture);
+        SafeWriteLine (&quot;Swipe id: &quot; + swipe.Id
+                       + &quot;, &quot; + swipe.State
+                       + &quot;, position: &quot; + swipe.Position
+                       + &quot;, direction: &quot; + swipe.Direction
+                       + &quot;, speed: &quot; + swipe.Speed);
+        break;
+    case Gesture.GestureType.TYPE_KEY_TAP:
+        KeyTapGesture keytap = new KeyTapGesture (gesture);
+        SafeWriteLine (&quot;Tap id: &quot; + keytap.Id
+                       + &quot;, &quot; + keytap.State
+                       + &quot;, position: &quot; + keytap.Position
+                       + &quot;, direction: &quot; + keytap.Direction);
+        break;
+    case Gesture.GestureType.TYPE_SCREEN_TAP:
+        ScreenTapGesture screentap = new ScreenTapGesture (gesture);
+        SafeWriteLine (&quot;Tap id: &quot; + screentap.Id
+                       + &quot;, &quot; + screentap.State
+                       + &quot;, position: &quot; + screentap.Position
+                       + &quot;, direction: &quot; + screentap.Direction);
+        break;
+    default:
+        SafeWriteLine (&quot;Unknown gesture type.&quot;);
+        break;
+    }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>Running the sample<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>To run the sample application:</p>
+<ol class="arabic simple">
+<li>Compile the sample application:</li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">On Windows, make sure that <tt class="docutils literal"><span class="pre">Sample.cs</span></tt> and either <tt class="docutils literal"><span class="pre">LeapCSharp.NET3.5.dll</span></tt> or <tt class="docutils literal"><span class="pre">LeapCSharp.NET4.0.dll</span></tt> are in the current directory. Run the following command in a command-line prompt (using the proper library reference for the .NET framework you are using):</p>
+<p><tt class="docutils literal"><span class="pre">csc</span> <span class="pre">/reference:LeapCSharp.NET4.0.dll</span> <span class="pre">/platform:x86</span> <span class="pre">/target:exe</span> <span class="pre">Sample.cs</span></tt></p>
+<p><em>Note: use the ``csc`` compiler from the appropriate version of the .NET framework.</em></p>
+</li>
+<li><p class="first">On Mac, you can use the Mono project to compile C# programs. Make sure that <tt class="docutils literal"><span class="pre">Sample.cs</span></tt> and either <tt class="docutils literal"><span class="pre">LeapCSharp.NET3.5.dll</span></tt> or <tt class="docutils literal"><span class="pre">LeapCSharp.NET4.0.dll</span></tt> are in the current directory:</p>
+</li>
+<li><p class="first">For the .NET 3.5 framework, run:</p>
+<p><tt class="docutils literal"><span class="pre">gmcs</span> <span class="pre">/reference:LeapCSharp.NET3.5.dll</span> <span class="pre">/platform:x86</span> <span class="pre">/target:exe</span> <span class="pre">Sample.cs</span></tt></p>
+</li>
+<li><p class="first">For the .NET 4.0 framework, run:</p>
+<p><tt class="docutils literal"><span class="pre">dmcs</span> <span class="pre">/reference:LeapCSharp.NET4.0.dll</span> <span class="pre">/platform:x86</span> <span class="pre">/target:exe</span> <span class="pre">Sample.cs</span></tt></p>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic">
+<li><p class="first">Plug the Leap device into a USB port and place it in front of you.</p>
+</li>
+<li><p class="first">If you haven&#8217;t already, install the Leap software.</p>
+</li>
+<li><p class="first">The Leap Motion software should start automatically.</p>
+<p>The Leap Motion control panel icon appears in the notification area of the task bar (on Windows) or finder bar (on Mac) and turns green when ready. A service or daemon runs in the background and provides data to client applications through the Leap Motion API. You can use the <a class="reference internal" href="../supplements/Leap_Visualizer.html"><em>diagnostic visualizer</em></a> to check whether the software is set up and running correctly.</p>
+</li>
+<li><p class="first">Run the sample application:</p>
+</li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">On Windows, make sure that <tt class="docutils literal"><span class="pre">Sample.exe</span></tt>, <tt class="docutils literal"><span class="pre">LeapCSharp.dll</span></tt>, <tt class="docutils literal"><span class="pre">Leap.dll</span></tt> and either <tt class="docutils literal"><span class="pre">LeapCSharp.NET3.5.dll</span></tt>, or <tt class="docutils literal"><span class="pre">LeapCSharp.NET4.0.dll</span></tt> are in the current directory. Use the libraries in the <tt class="docutils literal"><span class="pre">lib\x86</span></tt> directory for 32-bit projects. Use the libraries in the <tt class="docutils literal"><span class="pre">lib\x64</span></tt> directory for 64-bit projects. Run the following command in a command-line prompt:</p>
+<p><tt class="docutils literal"><span class="pre">Sample.exe</span></tt></p>
+</li>
+<li><p class="first">On Mac, make sure that <tt class="docutils literal"><span class="pre">Sample.exe</span></tt>, <tt class="docutils literal"><span class="pre">libLeapCSharp.dylib</span></tt>, <tt class="docutils literal"><span class="pre">libLeap.dylib</span></tt> and either <tt class="docutils literal"><span class="pre">LeapCSharp.NET3.5.dll</span></tt>, or <tt class="docutils literal"><span class="pre">LeapCSharp.NET4.0.dll</span></tt> are in the current directory and run the following command in a terminal window:</p>
+<p><tt class="docutils literal"><span class="pre">mono</span> <span class="pre">Sample.exe</span></tt></p>
+</li>
+</ul>
+</div></blockquote>
+<p>You should see the messages &#8220;Initialized&#8221; and &#8220;Connected&#8221; printed to standard output when the application initializes and connects to the Leap. You should then see frame information printed each time the Leap dispatches the <tt class="docutils literal"><span class="pre">onFrame</span></tt> event. When you place a hand above the Leap, you should also see finger and palm position information printed.</p>
+<p>Now that you have seen how to access motion tracking data with the Leap Motion API, you can begin developing your own C# applications that integrate the Leap Motion controller.</p>
+</div>
+</div>
+
+
+           <div id="disqus_thread"></div>
+           <script type="text/javascript">
+           var disqus_shortname = 'lmsdk'; // required: replace example with your forum shortname
+           //var disqus_identifier = "???";
+           (function() {
+           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+           })();
+           </script>
+      </div>
+      <div id="sidebar" class="col-md-3">
+        <div class="well-sidebar" data-offset-top="188">
+          <ul>
+            <li><a href="../index.html" title="Home">C# and Unity Docs (v2.0)</a></li>
+          </ul><ul>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Skeleton_API.html">Introducing the Skeletal Tracking Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Leap_Overview.html">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practices/Leap_Practices.html">Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Leap_Guides.html">Application Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Leap_SDK_Overview.html">SDK Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Hello World</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Creating a Controller object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Subclassing the Listener class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Getting a Frame of data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Getting Gestures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Running the sample</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Project_Setup.html#setting-up-a-project-in-unity-3d">Setting up a project in Unity 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unity_Boilerplate.html">Unity Boilerplate Asset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Unity_Demo_Pack.html">Unity Demo Pack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Leap_Architecture.html">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Leap_Guides2.html">Using the Tracking API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/Leap_Classes.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supplements/Leap_Supplements.html">Appendices</a></li>
+</ul>
+
+
+        </div>
+      </div>
+        
+    </div>
+  </div>
+</div>
+<!--
+
+<div class="ribbon">
+    <p>C# and Unity Beta</p>
+</div>
+
+
+<footer>
+
+  <div id="footer" class="container">
+
+      <ul class="unstyled col-md-2">
+        <h4>Downloads &amp; SDK</h4>
+          <li>
+              <a href="https://developer.leapmotion.com/downloads">Downloads</a>
+          </li>
+          <li>
+              <a href="https://developer.leapmotion.com/libraries">Community Libraries</a>
+          </li>
+      </ul>
+
+
+      <ul class="unstyled col-md-2">
+        <h4>Docs &amp; API</h4>
+          <li>
+              <a href="https://developer.leapmotion.com/getting_started">Get Started</a>
+          </li>
+          <li>
+              <a href="/documentation">Documentation</a>
+          </li>
+          <li>
+              <a href="https://developer.leapmotion.com/articles">Knowledge Base</a>
+          </li>
+          <li>
+              <a href="https://central.leapmotion.com/agreements/SdkAgreement?_r=https%3A%2F%2Fdeveloper.leapmotion.com%2F">SDK Agreement</a>
+          </li>
+      </ul>
+
+
+      <ul class="unstyled col-md-2">
+        <h4>Community</h4>
+          <li>
+              <a href="https://community.leapmotion.com/category/dev" target="_blank">Forums</a>
+          </li>
+          <li>
+              <a href="http://stackoverflow.com/questions/tagged/leap-motion" target="_blank">Stack Overflow</a>
+          </li>
+          <li>
+              <a href="https://developer.leapmotion.com/support">Support</a>
+          </li>
+          <li>
+              <a href="https://labs.leapmotion.com">Developer Blog</a>
+          </li>
+          <li>
+              <a href="https://twitter.com/LeapMotionDev" target="_blank">Twitter</a>
+          </li>
+          <li>
+              <a href="https://www.facebook.com/LeapMotion" target="_blank">Facebook</a>
+          </li>
+      </ul>
+
+
+      <ul class="unstyled col-md-2">
+        <h4>About</h4>
+          <li>
+              <a href="https://www.leapmotion.com/product" target="_blank">Leap Motion Controller</a>
+          </li>
+          <li>
+              <a href="http://www.leapmotion.com/company" target="_blank">Company Info</a>
+          </li>
+          <li>
+              <a href="https://www.leapmotion.com/careers" target="_blank">Careers</a>
+          </li>
+          <li>
+              <a href="https://www.leapmotion.com/contact" target="_blank">Contact</a>
+          </li>
+          <li>
+              <a href="http://blog.leapmotion.com" target="_blank">Blog</a>
+          </li>
+          <li>
+              <a href="https://www.leapmotion.com/legal" target="_blank">Privacy &amp; Terms</a>
+          </li>
+      </ul>
+
+
+      <ul class="unstyled col-md-2">
+        <h4>Apps</h4>
+          <li>
+              <a href="https://developer.leapmotion.com/apps/overview">Overview</a>
+          </li>
+          <li>
+              <a href="https://developer.leapmotion.com/apps/guidelines/review-guidelines">Guidelines</a>
+          </li>
+          <li>
+              <a href="https://developer.leapmotion.com/apps/airspace">About Airspace</a>
+          </li>
+          <li>
+              <a href="https://warehouse.leapmotion.com/" target="_blank">Submit Your App</a>
+          </li>
+          <li>
+              <a href="https://airspace.leapmotion.com/" target="_blank">Airspace</a>
+          </li>
+      </ul>
+
+  </div>
+  <script>
+      //Remove dev portal footer when viewing from file system
+      if(window.location.protocol == 'file:'){
+          var footer = document.getElementById("footer");
+          footer.parentNode.removeChild(footer);
+      }
+  
+  </script>
+  <div class="container">
+    <div class="copyright">
+      <span>Copyright &copy; 2012 - 2014, Leap Motion, Inc.</span>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
