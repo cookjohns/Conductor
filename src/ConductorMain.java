@@ -3,7 +3,6 @@ import java.util.Scanner;
 import com.leapmotion.leap.Controller;
 import de.voidplus.leapmotion.*;
 import processing.core.*;
-//import com.leapmotion.leap.processing.LeapMotion;
 
 /**
  * 
@@ -23,6 +22,7 @@ class ConductorMain extends PApplet {
    public static void main(String[] args) {//throws IOException {
    
       runStandard();
+      
       //setup();
       //draw();
        //new LeapViewer();

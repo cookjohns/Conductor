@@ -3,24 +3,29 @@ import de.voidplus.leapmotion.*;
 
 public class GUISketch extends PApplet {
 	LeapMotion leap;
-	
+	PImage img = loadImage("24pattern.jpg");
+		
+	@Override
 	public void setup() {
-		size(800, 550);  // w, h
-		background(255);
-		PImage img;
-		img = loadImage("44pattern.jpg");
-		img.resize(800, 550);
-		//background(img);
+		size(600, 550);  // w, h
+		//background(255);
+		img.resize(600, 550);
+		background(img);
 		leap = new LeapMotion(this);
 	}
 	
+	@Override
 	public void draw() {
-		background(255);
-		PImage img;
-		img = loadImage("44pattern.jpg");
-		img.resize(800, 550);
-		//background(img);
-		int fps = leap.getFrameRate();
+		//background(255);
+//		img.resize(800, 550);
+//		background(img);
+//		int fps = leap.getFrameRate();
+		
+        if (img == null) {
+            background(255);
+    } else {
+            image(img,0,0, width, height);
+    }
 		
 		// ========= HANDS =========
 		

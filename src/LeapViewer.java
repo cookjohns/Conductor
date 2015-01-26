@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import java.io.*;
 
 import com.leapmotion.leap.*;
@@ -51,6 +53,9 @@ public class LeapViewer extends JFrame {
       //GUISketchController control = new GUISketchController();
       //control.pack();
       //control.setVisible(true);
+      
+      // Paint controller
+
    
       // Create listener and controller
       listener   = new ConductorListener(this);
@@ -101,8 +106,37 @@ public class LeapViewer extends JFrame {
       setLocationRelativeTo(null);  // center the window 
       setVisible(true);
       
-      //sketchFrame = control;	
+//      JFrame frame = new JFrame();
+//      frame.setSize(500, 500);
+//      final Canvas canvas = new Canvas(100, 100);
+//      //frame.add(canvas);
+//      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//      frame.setVisible(true);
+//      Thread t = new Thread(new Runnable() {
+//          public void run() {
+//
+//              // Create a sample listener and controller
+//              DrawListener listener = new DrawListener(canvas);
+//              Controller controller = new Controller();
+//
+//              // Have the sample listener receive events from the
+//              // controller
+//              controller.addListener(listener);
+//
+//              // Keep this process running until Enter is pressed
+//              System.out.println("Press Enter to quit...");
+//              try {
+//                  System.in.read();
+//              } catch (IOException e) {
+//                  e.printStackTrace();
+//              }
+//              // Remove the sample listener when done
+//              controller.removeListener(listener);
+//          }
+//      });
+      //t.start();
       
+      //add(canvas);
       
       // ------------------------- Feedback ------------------------
       
