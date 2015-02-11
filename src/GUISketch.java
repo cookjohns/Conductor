@@ -3,7 +3,16 @@ import de.voidplus.leapmotion.*;
 
 public class GUISketch extends PApplet {
 	LeapMotion leap;
-	PImage img = loadImage("24pattern.jpg");
+	PImage img24 = loadImage("good24.png");
+	PImage img34 = loadImage("good34.png");
+	PImage img44 = loadImage("good44.png");
+	PImage img = img24;
+	
+	public void changeBackground(int input) {
+		if (input == 24) img = img24;
+		else if (input == 34) img = img34;
+		else img = img44;
+	}
 		
 	@Override
 	public void setup() {

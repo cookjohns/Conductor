@@ -12,7 +12,7 @@ import com.leapmotion.leap.Gesture.State;
  * Display GUI for Conductor Listener data. 
  */
 
-public class LeapViewer extends JFrame {
+public class LeapViewer extends JFrame implements ActionListener {
 	
    public class GUISketchController extends JFrame {
       private GUISketch sketch;
@@ -41,10 +41,15 @@ public class LeapViewer extends JFrame {
                        centerIs,        goDirection,    wristMoveNotify;
 
    private JCheckBox circle_CB, swipe_CB, tap_CB, keyTap_CB;
+   
+   GUISketch sketch = new GUISketch();
 
    private ConductorListener listener;
    private Controller controller;
 
+   private JButton twoFourButton = new JButton("2/4");
+   private JButton threeFourButton = new JButton("3/4");
+   private JButton fourFourButton = new JButton("4/4");
 
    public LeapViewer() {
       super("Conductor Information");
@@ -96,7 +101,6 @@ public class LeapViewer extends JFrame {
    
    // ------------------------- Add Sketch to JFRAME -------------------
    
-      GUISketch sketch = new GUISketch();
       sketch.init();
       add(sketch);
       sketch.setVisible(true);
@@ -135,6 +139,18 @@ public class LeapViewer extends JFrame {
           }
       });
       t.start();
+      
+      // ------------------------- Buttons ------------------------
+      JPanel buttonPanel = new JPanel();
+      buttonPanel.setBorder( BorderFactory.createTitledBorder("Pattern") );
+      buttonPanel.add(twoFourButton);
+      buttonPanel.add(threeFourButton);
+      buttonPanel.add(fourFourButton);
+      twoFourButton.addActionListener(this);
+      threeFourButton.addActionListener(this);
+      fourFourButton.addActionListener(this);
+      
+      c.add(buttonPanel);
             
       // ------------------------- Feedback ------------------------
       
@@ -396,7 +412,20 @@ public class LeapViewer extends JFrame {
       keyTapFingerID_TF.setText("");
    }  // end of clear()
 
-
+   /* Handles button press events */
+   public void actionPerformed(ActionEvent evt) {
+	    Object src = evt.getSource();
+	    if (src == twoFourButton) {
+	    	sketch.changeBackground(24);
+	    	//System.out.println("Two Four");
+	    } else if (src == threeFourButton) {
+	    	sketch.changeBackground(34);
+	    	//System.out.println("Three Four");
+	    } else if (src == fourFourButton) {
+	    	sketch.changeBackground(44);
+	    	//System.out.println("Four Four");
+	    }
+	  }
 
    public void setFrameInfo(int fCount, boolean tool)
    {
@@ -467,8 +496,4 @@ public class LeapViewer extends JFrame {
 
 
    // ----------------------------------------
-     
-
 } // end of LeapViewer class
-
-
