@@ -12,6 +12,7 @@ import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.InteractionBox;
 import com.leapmotion.leap.Listener;
 import com.leapmotion.leap.Tool;
+import com.leapmotion.leap.ToolList;
 import com.leapmotion.leap.Vector;
 
 /**

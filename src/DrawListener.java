@@ -12,6 +12,8 @@ import com.leapmotion.leap.GestureList;
 import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.Listener;
 import com.leapmotion.leap.Vector;
+import com.leapmotion.leap.Tool;
+import com.leapmotion.leap.ToolList;
 
 public class DrawListener extends Listener {
     private Integer lastX, lastY;
@@ -67,12 +69,35 @@ public class DrawListener extends Listener {
                     else
                         canvas.changeColorAndSize(Color.WHITE, new BasicStroke(
                                 20));
-                    canvas.drawLineSegment(lastX, lastY, X, Y);
+                    canvas.drawLineSegment(lastX, lastY, X, Y, Color.BLUE, 5);
                 }
                 lastX = X;
                 lastY = Y;
             }
 
+        }
+        // assuming that the frame has tool
+        else {
+            Tool tool = null;
+            if (frame.tools().count() > 0) {
+            	tool = frame.tools().get(0);
+            // Calculate the tool's tip position
+            Vector avgPos = Vector.zero();
+            avgPos = avgPos.plus(tool.tipPosition());
+            int X = (int)convert(avgPos.get(0),0);// -350<x<350
+            int Y = (int)convert(avgPos.get(1),1);// 20<y<730 flipped
+            if (lastX != null && lastY != null) {
+                if (draw)
+                    canvas.changeColorAndSize(Color.BLACK, new BasicStroke(
+                            1));
+                else
+                    canvas.changeColorAndSize(Color.WHITE, new BasicStroke(
+                            20));
+                canvas.drawLineSegment(lastX, lastY, X, Y, Color.RED, 5);
+            }
+            lastX = X;
+            lastY = Y;
+            }
         }
 
         GestureList gestures = frame.gestures();

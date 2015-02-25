@@ -29,8 +29,8 @@ public class Canvas extends JPanel {
      */
     public Canvas(int width, int height) {
         this.setPreferredSize(new Dimension(width, height));
-        color = Color.BLUE;
-        stroke = new BasicStroke(10);
+        //color = Color.BLUE;
+        //stroke = new BasicStroke(8);
     }
 
     /**
@@ -81,16 +81,16 @@ public class Canvas extends JPanel {
      * Draw a line between two points (x1, y1) and (x2, y2), specified in pixels
      * relative to the upper-left corner of the drawing buffer.
      */
-    void drawLineSegment(int x1, int y1, int x2, int y2) {
+    void drawLineSegment(int x1, int y1, int x2, int y2, Color color, int stroke) {
         final Graphics2D g = (Graphics2D) drawingBuffer.getGraphics();
-        g.setColor(Color.BLUE);
-        g.setStroke(new BasicStroke(6));
+        g.setColor(color);
+        g.setStroke(new BasicStroke(stroke));
         g.drawLine(x1, y1, x2, y2);
         this.repaint();
     }
 
     public void changeColorAndSize(Color newColor, BasicStroke basicStroke) {
-        color = newColor;
+    	color = newColor;
         stroke = basicStroke;
     }
 }
