@@ -69,7 +69,7 @@ public class DrawListener extends Listener {
                     else
                         canvas.changeColorAndSize(Color.WHITE, new BasicStroke(
                                 20));
-                    canvas.drawLineSegment(lastX, lastY, X, Y, Color.BLUE, 5);
+                    canvas.drawLineSegment(lastX, lastY, X, Y, Color.BLUE, 3);
                 }
                 lastX = X;
                 lastY = Y;
@@ -93,7 +93,7 @@ public class DrawListener extends Listener {
                 else
                     canvas.changeColorAndSize(Color.WHITE, new BasicStroke(
                             20));
-                canvas.drawLineSegment(lastX, lastY, X, Y, Color.RED, 5);
+                canvas.drawLineSegment(lastX, lastY, X, Y, Color.RED, 3);
             }
             lastX = X;
             lastY = Y;

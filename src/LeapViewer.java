@@ -48,6 +48,7 @@ public class LeapViewer extends JFrame implements ActionListener {
    private Controller controller;
 
    private JButton twoFourButton = new JButton("2/4");
+   boolean twoButtonPress = false;
    private JButton threeFourButton = new JButton("3/4");
    private JButton fourFourButton = new JButton("4/4");
 
@@ -120,12 +121,12 @@ public class LeapViewer extends JFrame implements ActionListener {
           public void run() {
 
               // Create a sample listener and controller
-              DrawListener listener = new DrawListener(canvas);
+              DrawListener drawListener = new DrawListener(canvas);
               Controller controller = new Controller();
 
               // Have the sample listener receive events from the
               // controller
-              controller.addListener(listener);
+              controller.addListener(drawListener);
 
               // Keep this process running until Enter is pressed
               System.out.println("Press Enter to quit...");
@@ -135,7 +136,7 @@ public class LeapViewer extends JFrame implements ActionListener {
                   e.printStackTrace();
               }
               // Remove the sample listener when done
-              controller.removeListener(listener);
+              controller.removeListener(drawListener);
           }
       });
       t.start();
@@ -364,7 +365,37 @@ public class LeapViewer extends JFrame implements ActionListener {
       labelText(keyTapPanel, "Finger ID", keyTapFingerID_TF);
    }  // end of buildGUI()
 
+   private void createCanvasGUI() {
+	   JFrame frame = new JFrame();
+	      frame.setSize(500, 500);
+	      final Canvas canvas = new Canvas(100, 100);
+	      frame.add(canvas);
+	      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      frame.setVisible(true);
+	      Thread t = new Thread(new Runnable() {
+	          public void run() {
 
+	              // Create a sample listener and controller
+	              DrawListener drawListener = new DrawListener(canvas);
+	              Controller controller = new Controller();
+
+	              // Have the sample listener receive events from the
+	              // controller
+	              controller.addListener(drawListener);
+
+	              // Keep this process running until Enter is pressed
+	              System.out.println("Press Enter to quit...");
+	              try {
+	                  System.in.read();
+	              } catch (IOException e) {
+	                  e.printStackTrace();
+	              }
+	              // Remove the sample listener when done
+	              controller.removeListener(drawListener);
+	          }
+	      });
+	      t.start();
+   }
 
    private void labelText(JPanel p, String label, JTextField tf)
    { p.add( new JLabel(label + ":"));
@@ -417,6 +448,7 @@ public class LeapViewer extends JFrame implements ActionListener {
 	    Object src = evt.getSource();
 	    if (src == twoFourButton) {
 	    	sketch.changeBackground(24);
+	    	//createCanvasGUI();
 	    	//System.out.println("Two Four");
 	    } else if (src == threeFourButton) {
 	    	sketch.changeBackground(34);
