@@ -41,16 +41,16 @@ class WristMovementListener extends Listener {
    protected static double mLeftPos = 0.0;
    protected static double mRightPos = 0.0;
    protected static double centerPos = 0.0;
-   private boolean atCenter = true;
-   private double prevDiff;
-   private double currentDiff;
-   private double mLeftDir = 0.0;
-   private double mRightDir = 0.0;
-   protected double testInteger = 0;
+   private   boolean       atCenter = true;
+   private   double        prevDiff;
+   private   double        currentDiff;
+   private   double        mLeftDir = 0.0;
+   private   double        mRightDir = 0.0;
+   protected double        testInteger = 0;
    
    private double wristHorizStart = 0.0;
    private double wristVertStart = 0.0;
-   private int wristStartMarker = 0;
+   private int    wristStartMarker = 0;
       
    //ConductorGui gui = new ConductorGui();
    

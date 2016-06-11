@@ -3,10 +3,21 @@ import de.voidplus.leapmotion.*;
 
 public class GUISketch extends PApplet {
 	LeapMotion leap;
+	LeapMotion factoryLeap;
 	PImage img24 = loadImage("good24.png");
 	PImage img34 = loadImage("good34.png");
 	PImage img44 = loadImage("good44.png");
 	PImage img = img24;
+	
+	Boolean hasBaton;
+	Tool globalTool;
+	
+	com.leapmotion.leap.Controller controller;
+	com.leapmotion.leap.Listener   listener;
+	
+	public GUISketch(Tool inputTool) {
+		this.globalTool = inputTool;
+	}
 	
 	public void changeBackground(int input) {
 		if (input == 24) img = img24;
@@ -21,6 +32,9 @@ public class GUISketch extends PApplet {
 		img.resize(600, 550);
 		background(img);
 		leap = new LeapMotion(this);
+		controller = new com.leapmotion.leap.Controller();
+		listener = new com.leapmotion.leap.Listener();
+		controller.addListener(listener);
 	}
 	
 	@Override
@@ -29,16 +43,19 @@ public class GUISketch extends PApplet {
 //		img.resize(800, 550);
 //		background(img);
 //		int fps = leap.getFrameRate();
+		hasBaton = null;
 		
         if (img == null) {
             background(255);
     } else {
             image(img,0,0, width, height);
     }
-		
+		com.leapmotion.leap.Frame frame = controller.frame();
 		// ========= HANDS =========
-		
+		if (!frame.hands().isEmpty()) {
 		for(Hand hand : leap.getHands()) {
+			//hasBaton = hand.hasTools();
+			
 	        int     hand_id          = hand.getId();
 	        PVector hand_position    = hand.getPosition();
 	        PVector hand_stabilized  = hand.getStabilizedPosition();
@@ -127,9 +144,10 @@ public class GUISketch extends PApplet {
 	             finger.draw(20); // = drawLines()+drawJoints()
 	             finger.drawLines();
 	             finger.drawJoints();
-
-	          // ========= TOOLS =========
-	        
+		}
+	        // ========= TOOLS =========
+	        if (this.globalTool != null) System.out.println("GREAT SUCCESS!!!");
+	        //globalTool.draw();
 			for(Tool tool : hand.getTools()){
 	            int     tool_id           = tool.getId();
 	            PVector tool_position     = tool.getPosition();
@@ -138,10 +156,33 @@ public class GUISketch extends PApplet {
 	            PVector tool_direction    = tool.getDirection();
 	            float   tool_time         = tool.getTimeVisible();
 	            
-	            tool.draw();
+//	        Tool tool = null;
+//	        if (hand.countTools() > 0) {
+//	        	tool = hand.getTools().get(0);
+//	        	hasBaton = true;
+//	        }
+//	            tool.draw();
 			}
-			
+		}
+		} // if frame has no hands
+		else {
+		//com.leapmotion.leap.Frame frame = controller.frame();
+			if (this.globalTool != null) {
+				System.out.println("GREAT SUCCESS!!!");
+				globalTool.draw();
+			}
+			if (frame.tools().count() > 0) {
+				hasBaton = true;
+			}
+			else { 
+				hasBaton = false;
+				//System.out.print(hasBaton);
+			}
 		}
 	}
-}
+	
+	public void onFrame() {
+		hasBaton = true;
+	}
+	
 }

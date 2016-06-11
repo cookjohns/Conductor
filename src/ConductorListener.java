@@ -23,9 +23,11 @@ import com.leapmotion.leap.Vector;
 public class ConductorListener extends Listener {
 		
 	  private LeapViewer viewer;
+	  public Tool globalTool;
 	  public ConductorListener(LeapViewer v)
 	  { super();
 	    viewer = v;
+	    //this.globalTool = v.globalTool; 
 	  }
 
 	   // instance variables for static left, right, center
@@ -137,7 +139,7 @@ public class ConductorListener extends Listener {
 	         
 	         viewer.setFrameInfo(fingers.count(), hasTools);
 	         
-	         if (!fingers.isEmpty() || hasTools) {
+	         if ((!fingers.isEmpty()) || hasTools) {
 	         
 	            // Calculate the hand's average finger tip position
 	            Vector avgPos = Vector.zero();

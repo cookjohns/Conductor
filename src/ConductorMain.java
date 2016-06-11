@@ -30,7 +30,7 @@ class ConductorMain extends PApplet {
    //	  System.out.println("Which mode would you like to run?");
    //	  System.out.println("Enter 1 for CENTER or 2 for WRIST MOVEMENT: ");
    //	  String choice = input.nextLine();
-   //	  switch (choice) {
+   //	  switch (choice) {s
    //	  	case "1":
    //	  	    System.out.print("\nPlace hand over device, then press ENTER. \n\nPress ENTER again to STOP.");
    //		    System.in.read();

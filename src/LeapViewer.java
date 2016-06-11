@@ -13,17 +13,18 @@ import com.leapmotion.leap.Gesture.State;
  */
 
 public class LeapViewer extends JFrame implements ActionListener {
-	
-   public class GUISketchController extends JFrame {
-      private GUISketch sketch;
-      public GUISketchController() {
-         setTitle("Conductor");
-         setDefaultCloseOperation(EXIT_ON_CLOSE);
-         sketch = new GUISketch();
-         sketch.init();
-         add(sketch);
-      }
-   }
+			
+//   public class GUISketchController extends JFrame {
+//      private GUISketch sketch;
+//      public Tool globalTool;
+//      public GUISketchController() {
+//         setTitle("Conductor");
+//         setDefaultCloseOperation(EXIT_ON_CLOSE);
+//         sketch = new GUISketch();
+//         sketch.init();
+//         add(sketch);
+//      }
+//   }
 	
    private JTextField frameID_TF,       timeHands_TF,   frameHands_TF, frameFingers_TF, 
                        frameTools_TF,   frameGestures_TF,
@@ -42,7 +43,9 @@ public class LeapViewer extends JFrame implements ActionListener {
 
    private JCheckBox circle_CB, swipe_CB, tap_CB, keyTap_CB;
    
-   GUISketch sketch = new GUISketch();
+   public de.voidplus.leapmotion.Tool globalTool;
+   
+   GUISketch sketch = new GUISketch(this.globalTool);
 
    private ConductorListener listener;
    private Controller controller;
@@ -121,8 +124,9 @@ public class LeapViewer extends JFrame implements ActionListener {
           public void run() {
 
               // Create a sample listener and controller
-              DrawListener drawListener = new DrawListener(canvas);
+              DrawListener drawListener = new DrawListener(canvas, sketch);
               Controller controller = new Controller();
+              //globalTool = drawListener.globalTool;
 
               // Have the sample listener receive events from the
               // controller
@@ -215,7 +219,7 @@ public class LeapViewer extends JFrame implements ActionListener {
    //    handTouchTF = new JTextField(3);   
    //    labelText(hand2Panel, "Touching", handTouchTF);
    
-      c.add(handPanel);
+      //c.add(handPanel);
       
       
       // ------------------------- Frame Info -------------------
@@ -243,126 +247,7 @@ public class LeapViewer extends JFrame implements ActionListener {
    //    labelText(framePanel, "No. Gestures", frameGestures_TF);
    
       c.add(framePanel);
-   
-   
-      
-      
-      // ------------------------- Gestures Info -------------------
-   
-      JPanel gesturesPanel = new JPanel();
-      gesturesPanel.setLayout( new BoxLayout(gesturesPanel, BoxLayout.Y_AXIS) );  
-      gesturesPanel.setBorder( BorderFactory.createTitledBorder("Gestures Info") );
-   
-      //c.add(gesturesPanel);
-   
-   
-      // --------- circle gesture ------------------
-   
-      JPanel circlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-      //gesturesPanel.add(circlePanel);
-   
-      circle_CB        = new JCheckBox("Circle");
-      circlePanel.add(circle_CB);
-   
-      circleID_TF      = new JTextField(5);
-      labelText(circlePanel, "ID", circleID_TF);
-   
-      circleDir_TF     = new JTextField(5);
-      labelText(circlePanel, "Dir", circleDir_TF); 
-             // clockwise or counter-clockwise
-   
-      circleProgess_TF = new JTextField(4);
-      labelText(circlePanel, "No. Circuits", circleProgess_TF);
-         // progress == number of times finger tip has gone round the circle
-      circleRadius_TF  = new JTextField(4);
-      labelText(circlePanel, "Radius", circleRadius_TF);
-             // radius of the circle in mm
-   
-      circleAngle_TF   = new JTextField(3);
-      labelText(circlePanel, "Angle", circleAngle_TF);
-            // angle swept since last frame (in degrees)
-   
-      circleState_TF   = new JTextField(9);
-      labelText(circlePanel, "State", circleState_TF);
-             // start, stop, or update
-   
-   
-      // --------- swipe gesture ------------------
-   
-      JPanel swipePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-      //gesturesPanel.add(swipePanel);
-   
-      swipe_CB = new JCheckBox("Swipe");
-      swipePanel.add(swipe_CB);
-   
-      swipeID_TF = new JTextField(5);
-      labelText(swipePanel, "ID", swipeID_TF);
-   
-      swipePosn_TF = new JTextField(10);
-      labelText(swipePanel, "Pos", swipePosn_TF);
-   
-      swipeDir_TF = new JTextField(10);
-      labelText(swipePanel, "Dir", swipeDir_TF);
-             // a unit vector parallel to the swipe motion
-   
-      swipeSpeed_TF = new JTextField(4);
-      labelText(swipePanel, "Speed", swipeSpeed_TF);   // in mm/sec
-   
-      swipeState_TF = new JTextField(9);
-      labelText(swipePanel, "State", swipeState_TF);
-             // start, stop, or update
-   
-      // --------- screen tap gesture ------------------
-   
-      JPanel tapPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-      //gesturesPanel.add(tapPanel);
-   
-      tap_CB = new JCheckBox(" Screen Tap");
-      tapPanel.add(tap_CB);
-   
-      tapID_TF = new JTextField(5);
-      labelText(tapPanel, "ID", tapID_TF);
-   
-      tapPosn_TF = new JTextField(10);
-      labelText(tapPanel, "Pos", tapPosn_TF);
-   
-      tapDir_TF = new JTextField(10);
-      labelText(tapPanel, "Dir", tapDir_TF);
-             // a unit vector parallel to the tap motion
-             // should be along the z-axis
-   
-      tapState_TF = new JTextField(9);
-      labelText(tapPanel, "State", tapState_TF);
-             // start, stop, or update
-   
-      tapFingerID_TF = new JTextField(5);
-      labelText(tapPanel, "Finger ID", tapFingerID_TF);
-   
-      // --------- key tap gesture ------------------
-   
-      JPanel keyTapPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-      //gesturesPanel.add(keyTapPanel);
-   
-      keyTap_CB = new JCheckBox("Key Tap");
-      keyTapPanel.add(keyTap_CB);
-   
-      keyTapID_TF = new JTextField(5);
-      labelText(keyTapPanel, "ID", keyTapID_TF);
-   
-      keyTapPosn_TF = new JTextField(10);
-      labelText(keyTapPanel, "Pos", keyTapPosn_TF);
-   
-      keyTapDir_TF = new JTextField(10);
-      labelText(keyTapPanel, "Dir", keyTapDir_TF);
-             // a unit vector parallel to the tap motion
-             // should be along the y-axis
-   
-      keyTapState_TF = new JTextField(9);
-      labelText(keyTapPanel, "State", keyTapState_TF);
-             // start, stop, or update
-   
-      keyTapFingerID_TF = new JTextField(5);
-      labelText(keyTapPanel, "Finger ID", keyTapFingerID_TF);
+
    }  // end of buildGUI()
 
    private void createCanvasGUI() {
@@ -376,7 +261,7 @@ public class LeapViewer extends JFrame implements ActionListener {
 	          public void run() {
 
 	              // Create a sample listener and controller
-	              DrawListener drawListener = new DrawListener(canvas);
+	              DrawListener drawListener = new DrawListener(canvas, sketch);
 	              Controller controller = new Controller();
 
 	              // Have the sample listener receive events from the
@@ -462,12 +347,6 @@ public class LeapViewer extends JFrame implements ActionListener {
    public void setFrameInfo(int fCount, boolean tool)
    {
       String hasTool = "";
-      if (tool) {
-         hasTool = "Yes";
-      }
-      else {
-         hasTool = "No";
-      }
       frameFingers_TF.setText(""+fCount); frameTools_TF.setText(""+hasTool);
    }  // end of setFrameInfo();
 
