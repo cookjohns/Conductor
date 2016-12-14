@@ -5,4 +5,4 @@ Traditionally, the only way for a student to learn and improve upon conducting s
 
 Requires Leap Motion SDK to compile, and Leap Motion hardware to operate.
 
-![alt text](https://drive.google.com/uc?id=0B0RNg9f7VJiEMG1YOTdpQmRPaWs)
+![alt text](https://drive.google.com/uc?id=0B0RNg9f7VJiEZ2gxUThBcFlKLWc)
