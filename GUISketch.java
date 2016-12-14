@@ -4,9 +4,9 @@ import de.voidplus.leapmotion.*;
 public class GUISketch extends PApplet {
 	LeapMotion leap;
 	LeapMotion factoryLeap;
-	PImage img24 = loadImage("good24.png");
+	PImage img24 = loadImage("24pattern.png");
 	PImage img34 = loadImage("good34.png");
-	PImage img44 = loadImage("good44.png");
+	PImage img44 = loadImage("44pattern.jpg");
 	PImage img = img24;
 	
 	Boolean hasBaton;
